@@ -1,8 +1,10 @@
 " Vim indent file
-" Language:	Falcon
-" Version:	0.01
-" Last Change:	2003 Feb 04
-" Maintainer:	Brent A. Fulgham <bfulgham@debian.org>
+" Language: Falcon
+" Maintainer: Steven Oliver <oliver.steven@gmail.com>
+" Website: https://steveno@github.com/steveno/falconpl-vim.git
+" ------------------------------------------------------------
+" Previous Maintainer: Brent A. Fulgham <bfulgham@debian.org>
+
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
@@ -54,8 +56,7 @@ function FalconGetIndent()
   endif
 
   " If previous line was a 'define', indent
-  "if prevline =~? '^\s*\(case\|catch\|class\|enum\|default\|elif\|else\|function\|if \(\(:\)\@!.\)*$\|loop\|select\|switch\|while\)'
-  if prevline =~? '^\s*\(case\|catch\|class\|enum\|default\|elif\|else\|function\|if.*"[^"]*:.*"\|if \(\(:\)\@!.\)*$\|loop\|select\|switch\|while\)'
+  if prevline =~? '^\s*\(case\|catch\|class\|enum\|default\|elif\|else\|function\|if.*"[^"]*:.*"\|if \(\(:\)\@!.\)*$\|loop\|select\|switch\|while\|for\)'
     let chg = &sw
   " If previous line opened a parenthesis, and did not close it, indent
   elseif prevline =~ '^.*(\s*[^)]*\((.*)\)*[^)]*$'
