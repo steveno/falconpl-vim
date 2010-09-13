@@ -19,6 +19,7 @@ endif
 
 " Symbols.
 syn match   falconSymbol "\(;\|,\|\.\)"
+syn match   falconSymbolOther "\(#\)" display
 
 " Operators.
 syn match   falconOperator "\(+\|-\|\*\|/\|=\|<\|>\|@\|\*\*\|!=\|\~=\)"
@@ -152,6 +153,7 @@ if version >= 600 || !exists("did_falcon_syn_inits")
   HiLink falconSharpBang        PreProc
   HiLink falconInclude          Include
   HiLink falconSymbol           Constant
+  HiLink falconSymbolOther      Delimiter
 
   delcommand HiLink
 endif
