@@ -16,6 +16,8 @@ set cpo&vim
 setlocal tabstop=4 shiftwidth=4 expandtab fileencoding=utf-8
 setlocal suffixesadd=.fal
 
+"TODO Add paterns for matchit plugin
+
 if has("gui_win32") && !exists("b:browsefilter")
   let b:browsefilter = "Falcon Source Files (*.fal)\t*.fal\n" .
                      \ "All Files (*.*)\t*.*\n"
