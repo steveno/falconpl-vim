@@ -6,12 +6,6 @@
 " -------------------------------------------------------------------------------
 " Credits:      Thanks the ruby.vim authors, I borrowed a lot!
 
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
-  finish
-endif
-
 " When wanted, highlight the trailing whitespace.
 if exists("c_space_errors")
   if !exists("c_no_trail_space_error")
