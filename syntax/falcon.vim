@@ -1,9 +1,10 @@
 " Vim syntax file
-" Language: Falcon
-" Maintainer: Steven Oliver <oliver.steven@gmail.com>
-" Website: http://github.com/steveno/vim-files/blob/master/syntax/falcon.vim
-" ---------------------------------------------------------------------------
-" Thanks the ruby.vim authors, I borrowed a lot!
+" Language:     Falcon
+" Maintainer:   Steven Oliver <oliver.steven@gmail.com>
+" Copyright:    Copyright (c) 2009, 2010 Steven Oliver
+" Website:      http://github.com/steveno/falconpl-vim
+" -------------------------------------------------------------------------------
+" Credits:      Thanks the ruby.vim authors, I borrowed a lot!
 
 if version < 600
   syntax clear
