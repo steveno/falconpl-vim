@@ -31,6 +31,10 @@ if exists("loaded_matchit") && !exists("b:match_words")
 	\ ',{:},\[:\],(:)'
 endif
 
+" Set comments to include dashed lines
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+
+" Windows allows you to filter the open file dialog
 if has("gui_win32") && !exists("b:browsefilter")
   let b:browsefilter = "Falcon Source Files (*.fal)\t*.fal\n" .
                      \ "All Files (*.*)\t*.*\n"
