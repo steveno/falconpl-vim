@@ -2,9 +2,13 @@
 " Language: Falcon
 " Maintainer: Steven Oliver <oliver.steven@gmail.com>
 " Website: https://steveno@github.com/steveno/falconpl-vim.git
+" Credits: Thanks to the ruby.vim authors, I borrow a lot!
 " ------------------------------------------------------------
 " Previous Maintainer: Brent A. Fulgham <bfulgham@debian.org>
 
+"======================================
+"       SETUP
+"======================================
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
@@ -12,13 +16,23 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\"
+" We're indenting falconpl not C
+setlocal nosmartindent
+
+" Setup indent function and when to use it
+setlocal indentexpr=FalconGetIndent()
+setlocal indentkeys=0{,0},0),0],!^F,o,O,e
+setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\" 
 
 " Define the appropriate indent function but only once
 setlocal indentexpr=FalconGetIndent()
 if exists("*FalconGetIndent")
   finish
 endif
+
+"======================================
+"       INDENT ROUTINE
+"======================================
 
 function FalconGetIndent()
   " Get the line to be indented
