@@ -2,13 +2,9 @@
 " Language: Falcon
 " Maintainer: Steven Oliver <oliver.steven@gmail.com>
 " Website: https://steveno@github.com/steveno/falconpl-vim.git
-" Credits: Thanks to the ruby.vim authors, I borrow a lot!
 " ------------------------------------------------------------
 " Previous Maintainer: Brent A. Fulgham <bfulgham@debian.org>
 
-"======================================
-"       SETUP
-"======================================
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
@@ -16,13 +12,7 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-" We're indenting falconpl not C
-setlocal nosmartindent
-
-" Setup indent function and when to use it
-setlocal indentexpr=FalconGetIndent()
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e
-setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\" 
+setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\"
 
 " Define the appropriate indent function but only once
 setlocal indentexpr=FalconGetIndent()
@@ -30,6 +20,7 @@ if exists("*FalconGetIndent")
   finish
 endif
 
+<<<<<<< HEAD
 " Regex of syntax group names that are strings or are comments.
 let s:syng_strcom = '\<falcon\%(String\|StringEscape\|Comment\)\>'
 
@@ -51,6 +42,8 @@ let s:falcon_deindent_keywords = '^\s*\(case\|catch\|default\|elif\|else\|end\)'
 "       INDENT ROUTINE
 "======================================
 
+=======
+>>>>>>> parent of f9de8b0... Add extra comments for readability.
 function FalconGetIndent()
   " Get the line to be indented
   let cline = getline(v:lnum)
