@@ -19,10 +19,10 @@ endif
 
 " Symbols.
 syn match   falconSymbol "\(;\|,\|\.\)"
-syn match   falconSymbolOther "\(#\)" display
+syn match   falconSymbolOther "\(#\|@\)" display
 
 " Operators.
-syn match   falconOperator "\(+\|-\|\*\|/\|=\|<\|>\|@\|\*\*\|!=\|\~=\)"
+syn match   falconOperator "\(+\|-\|\*\|/\|=\|<\|>\|\*\*\|!=\|\~=\)"
 syn match   falconOperator "\(<=\|>=\|=>\|\.\.\|<<\|>>\|\"\)"
 
 " Clusters
