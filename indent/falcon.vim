@@ -20,36 +20,12 @@ if exists("*FalconGetIndent")
   finish
 endif
 
-<<<<<<< HEAD
-" Regex of syntax group names that are strings or are comments.
-let s:syng_strcom = '\<falcon\%(String\|StringEscape\|Comment\)\>'
-
-" Regex of syntax group names that are strings.
-let s:syng_string = '\<falcon\%(String\|StringEscape\)\>'
-
-" Expression used to check whether we should skip a match with searchpair().
-let s:skip_expr = "synIDattr(synID(line('.'),col('.'),1),'name') =~ '".s:syng_strcom."'"
-
-" Keywords to indent on
-let s:falcon_indent_keywords = '^\s*\(case\|catch\|class\|enum\|default\|elif\|else' .
-    \ '\|function\|if.*"[^"]*:.*"\|if \(\(:\)\@!.\)*$\|loop\|object\|select\|switch' .
-    \ '\|while\|for\)'
-
-" Keywords to deindent on
-let s:falcon_deindent_keywords = '^\s*\(case\|catch\|default\|elif\|else\|end\)'
-
-"======================================
-"       INDENT ROUTINE
-"======================================
-
-=======
->>>>>>> parent of f9de8b0... Add extra comments for readability.
 function FalconGetIndent()
   " Get the line to be indented
   let cline = getline(v:lnum)
 
   " Don't reindent comments on first column
-  if cline =~ s:syng_strcom
+  if cline =~ '^/\[/\*]'
     return 0
   endif
 
@@ -65,7 +41,7 @@ function FalconGetIndent()
   let chg = 0
 
   " If previous line was a comment, use its indent
-  if prevline =~ s:falcon_strcom
+  if prevline =~ '^\s*//'
    return ind
   endif
 
@@ -80,12 +56,11 @@ function FalconGetIndent()
   endif
 
   " If previous line was a 'define', indent
-  if prevline =~? s:falcon_indent_keywords
+  if prevline =~? '^\s*\(case\|catch\|class\|enum\|default\|elif\|else\|function\|if.*"[^"]*:.*"\|if \(\(:\)\@!.\)*$\|loop\|select\|switch\|while\|for\)'
     let chg = &sw
   " If previous line opened a parenthesis, and did not close it, indent
   elseif prevline =~ '^.*(\s*[^)]*\((.*)\)*[^)]*$'
     return = match( prevline, '(.*\((.*)\|[^)]\)*.*$') + 1
-  "elseif prevline =~ '^.*(\s*[^)]*\((.*)\)*[^)]*$'
   elseif prevline =~ '^[^(]*)\s*$'
     " This line closes a parenthesis.  Find opening
     let curr_line = prevnonblank(lnum - 1)
@@ -110,7 +85,7 @@ function FalconGetIndent()
 
 
   " If a line starts with end, un-indent (even if we just indented!)
-  if cline =~? s:falcon_deintent_keywords
+  if cline =~? '^\s*\(case\|catch\|default\|elif\|else\|end\)'
     let chg = chg - &sw
   endif
 
