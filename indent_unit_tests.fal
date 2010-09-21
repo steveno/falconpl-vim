@@ -1,0 +1,80 @@
+/*
+ *          UNIT TESTS FOR FALCON.VIM INDENT SCRIPT
+ *          
+ *  ____________________________________
+ *  INSTRUCTIONS
+ *
+ *  Upon opening this file should be properly indented. Without 
+ *  changing anything press gg=G. You should then :q. If vim 
+ *  asks you to save changes you've done one of two things:
+ *
+ *      1) If something you didn't add changed you've 
+ *         broken the the indent script.
+ *      2) If something you added changed you need to 
+ *         further modify the indent script.
+ *
+ *  IMPORTANT!! DO NOT REMOVE the vim setup tag at the  bottom 
+ *  of this file. Although, if you're using the ftplugin file from 
+ *       https://steveno@github.com/steveno/falconpl-vim.git
+ *  it is technically uneccesary.
+ *
+ *  ____________________________________
+ *  ADDING NEW FORMATING TESTS
+ *  
+ *  Simply add all new formating examples to the bottom of the 
+ *  script. This is no special ordering at this time.
+ *
+ *  ____________________________________
+ *  KNOWN FAILURES
+ *
+ *  - None at this time.
+ *  
+ */
+
+// No indenting required
+string = "Hello World!"
+> #variable
+
+// Functions
+function coro( id, syn )
+    syn.wait()
+    printl( "Coroutine ", id, " started" )
+end 
+
+// For loops
+for i in [0:3]
+    sleep( 1 )
+    semaphore.post()
+end 
+
+// Objects
+object test
+    prop = [ "zero", "first", "second", "third" ]
+end 
+
+// Dictionary method combo
+entity = bless([
+    "data" => "not initialized",
+        "sum_up" => function( counter );
+    if counter == 0: return;
+    self.data += counter;
+    self.sum_up( counter - 1 );
+end
+])
+
+// Single line for loops
+for i in [91:101]: vector += i
+
+// Multi-line dictionary 
+d = [=>].comp( [0:6],
+    { n => [ 'a'/ n, n] } )
+
+// Brigade passing of parameters to functions
+looper = .[brigade .[  
+    { val, text => printl( text, ": ", val ) }
+    { val, text => oob( [val+1, "Changed"] ) }
+    { val, text => val < 10 ? oob(1): "Completed" }
+    ]]
+
+/* vim: set sw=4 sts=4 et tw=80 : */
+
