@@ -3,8 +3,8 @@
 " Author:       Steven Oliver <oliver.steven@gmail.com>
 " Copyright:    Copyright (c) 2009, 2010 Steven Oliver
 " License:      You may redistribute this under the same terms as Vim itself
-" Website:      http://github.com/steveno/falconpl-vim
 " --------------------------------------------------------------------------
+" GetLatestVimScripts: 2762 1 :AutoInstall: falcon.vim
 
 " Only do this when not done yet for this buffer
 if (exists("b:did_ftplugin"))
@@ -40,6 +40,5 @@ if has("gui_win32") && !exists("b:browsefilter")
                      \ "All Files (*.*)\t*.*\n"
 endif
 
-"---------------------------------------------
 " vim: set sw=4 sts=4 et tw=80 :
-"
+
