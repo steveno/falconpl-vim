@@ -11,7 +11,7 @@ if exists("c_space_errors")
     if !exists("c_no_trail_space_error")
         syn match falconSpaceError "\s\+$"
     endif
-    
+
     if !exists("c_no_tab_space_error")
         syn match falconSpaceError " \+\t"me=e-1
     endif
@@ -30,15 +30,15 @@ syn region falconSymbol start="[]})\"':]\@<!:\"" end="\"" skip="\\\\\|\\\"" cont
 syn case match
 
 " Keywords
-syn keyword falconKeyword all allp any anyp as attributes brigade cascade catch choice class const 
-syn keyword falconKeyword continue def directive do list dropping enum eq eval exit export from function 
-syn keyword falconKeyword give global has hasnt in init innerfunc lambda launch launch len List list 
-syn keyword falconKeyword load notin object pass print printl provides raise return self sender static to 
-syn keyword falconKeyword try xamp 
+syn keyword falconKeyword all allp any anyp as attributes brigade cascade catch choice class const
+syn keyword falconKeyword continue def directive do list dropping enum eq eval exit export from function
+syn keyword falconKeyword give global has hasnt in init innerfunc lambda launch launch len List list
+syn keyword falconKeyword load notin object pass print printl provides raise return self sender static to
+syn keyword falconKeyword try xamp
 
 " Error Type Keywords
 syn keyword falconKeyword CloneError CodeError Error InterruprtedError IoError MathError
-syn keyword falconKeyword ParamError RangeError SyntaxError TraceStep TypeError 
+syn keyword falconKeyword ParamError RangeError SyntaxError TraceStep TypeError
 
 " Todo
 syn keyword falconTodo DEBUG FIXME NOTE TODO XXX
@@ -122,7 +122,7 @@ syn sync minlines=10 maxlines=100
 " Define the default highlighting
 if !exists("did_falcon_syn_inits")
     command -nargs=+ HiLink hi def link <args>
-    
+
     HiLink falconKeyword          Keyword
     HiLink falconCommentString    String
     HiLink falconTodo             Todo

@@ -22,7 +22,7 @@ setlocal nosmartindent
 " Setup indent function and when to use it
 setlocal indentexpr=FalconGetIndent()
 setlocal indentkeys=0{,0},0),0],!^F,o,O,e
-setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\" 
+setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\"
 
 " Define the appropriate indent function but only once
 if exists("*FalconGetIndent")
@@ -79,7 +79,7 @@ function FalconGetIndent()
     if lnum == 0
         return 0
     endif
-    
+
     let prevline=getline(lnum)
     let ind = indent(lnum)
     let chg = 0
@@ -88,19 +88,19 @@ function FalconGetIndent()
     if s:IsInStringOrComment(v:lnum, matchend(cline, '^\s*') + 1 )
         return indent('.')
     endif
-    
-    " If the start of the line equals a double quote, then indent to the 
+
+    " If the start of the line equals a double quote, then indent to the
     " previous lines first double quote
     if cline =~? '^\s*"'
         let chg = chg + &sw
     endif
 
-    " If previous line started with a double quote and this one 
+    " If previous line started with a double quote and this one
     " doesn't, unindent
     if prevline =~? '^\s*"' && cline =~? '^\s*'
         let chg = chg - &sw
-    endif     
-    
+    endif
+
     " Indent if proper keyword
     if prevline =~? s:falcon_indent_keywords
         let chg = &sw
@@ -129,7 +129,7 @@ function FalconGetIndent()
         let ind = indent(curr_line)
     endif
 
-    " If previous line ends in a semi-colon reset indent to previous 
+    " If previous line ends in a semi-colon reset indent to previous
     " lines setting
     if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'
         return chg = chg - (2 * &sw)
@@ -144,7 +144,7 @@ function FalconGetIndent()
     if prevline =~? '=>\s*$'
         let chg = chg + &sw
     endif
-    
+
     " Deindent on proper keywords
     if cline =~? s:falcon_deindent_keywords
         let chg = chg - &sw
