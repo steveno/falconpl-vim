@@ -56,6 +56,7 @@ syn keyword falconBool true false
 
 " Constants
 syn keyword falconConst PI E nil
+syn match   falconConstant  "\%(\%([.@$]\@<!\.\)\@<!\<\|::\)\_s*\zs\u\w*\%(\>\|::\)\@=\%(\s*(\)\@!"
 
 " Comments
 syn match falconCommentSkip contained "^\s*\*\($\|\s\+\)"
@@ -132,6 +133,7 @@ if !exists("did_falcon_syn_inits")
     HiLink falconComment          Comment
     HiLink falconCommentL         Comment
     HiLink falconConst            Constant
+    HiLink falconConstants        Constant
     HiLink falconOperator         Operator
     HiLink falconSymbol           Normal
     HiLink falconSpaceError       Error
