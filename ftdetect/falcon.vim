@@ -6,7 +6,7 @@
 " --------------------------------------------------------------------------
 " GetLatestVimScripts: 2763 1 :AutoInstall: falcon.vim
 
-au BufNewFile,BufRead *.fal set filetype=falcon
+au BufNewFile,BufRead *.fal,*.ftd set filetype=falcon
 
 " vim: set sw=4 sts=4 et tw=80 :
 
