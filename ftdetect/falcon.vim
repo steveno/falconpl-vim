@@ -1,7 +1,7 @@
 " Vim filetype plugin file
 " Language:     Falcon
 " Author:       Steven Oliver <oliver.steven@gmail.com>
-" Copyright:    Copyright (c) 2009, 2010 Steven Oliver
+" Copyright:    Copyright (c) 2009, 2010, 2011 Steven Oliver
 " License:      You may redistribute this under the same terms as Vim itself
 " --------------------------------------------------------------------------
 " GetLatestVimScripts: 2763 1 :AutoInstall: falcon.vim
