@@ -43,5 +43,8 @@ endif
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-" vim: set sw=4 sts=4 et tw=80 :
+let b:undo_ftplugin = "setlocal tabstop< shiftwidth< expandtab< fileencoding<"
+	\ . " suffixesadd< comments<"
+	\ . "| unlet! b:browsefiler"
 
+" vim: set sw=4 sts=4 et tw=80 :
