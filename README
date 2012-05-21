@@ -1,1 +1,18 @@
 Falcon programming language Vim files.
+
+If you are you using this repository then you're probably wondering
+why not just use the files that come with Vim? There's no single 
+answer to that but here are some things to keep in mind:
+
+1) Odds are on most days what's here and what's in Vim is exactly 
+   the same. 
+2) If someone makes a request or I find a flaw I can fix I will 
+   update it here first and play with for a while before 
+   submitting changes downstream to Bram.
+3) This repository is, by its nature, more up-to-date than what's
+   in Vim, but that also means its not quite as stable.
+
+Either way, enjoy! 
+
+         Pull requests, suggestions, and comments are 
+                 all welcomed and encouraged!
