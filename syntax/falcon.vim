@@ -5,7 +5,6 @@
 " Credits:      Thanks the ruby.vim authors, I borrowed a lot!
 "               Thanks to the lisp authors for the rainbow code!
 " -------------------------------------------------------------------------------
-" GetLatestVimScripts: 2745 1 :AutoInstall: falcon.vim
 
 " When wanted, highlight the trailing whitespace.
 if exists("c_space_errors")
