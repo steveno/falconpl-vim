@@ -131,8 +131,8 @@ function FalconGetIndent()
 
     " If previous line ends in a semi-colon reset indent to previous
     " lines setting
-    if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'
-        return chg = chg - (2 * &sw)
+    if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'        
+        let chg = chg - (2 * &sw)
     endif
 
     " If previous line ended in a comma, indent again
