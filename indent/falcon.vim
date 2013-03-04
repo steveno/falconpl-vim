@@ -5,7 +5,6 @@
 " Credits: Thanks to the ruby.vim authors, I borrow a lot!
 " Previous Maintainer: Brent A. Fulgham <bfulgham@debian.org>
 " -----------------------------------------------------------
-" GetLatestVimScripts: 2752 1 :AutoInstall: falcon.vim
 
 "======================================
 "       SETUP
