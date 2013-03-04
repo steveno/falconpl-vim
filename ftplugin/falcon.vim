@@ -4,7 +4,6 @@
 " Copyright:    Copyright (c) 2009, 2010, 2011 Steven Oliver
 " License:      You may redistribute this under the same terms as Vim itself
 " --------------------------------------------------------------------------
-" GetLatestVimScripts: 2762 1 :AutoInstall: falcon.vim
 
 " Only do this when not done yet for this buffer
 if (exists("b:did_ftplugin"))
