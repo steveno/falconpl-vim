@@ -129,18 +129,13 @@ function FalconGetIndent()
     endif
 
     " If previous line ends in a semi-colon reset indent to previous
-    " lines setting
+    " line's setting
     if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'        
         let chg = chg - (2 * &sw)
     endif
 
-    " If previous line ended in a comma, indent again
-    if prevline =~? ',\s*$'
-        let chg = chg + &sw
-    endif
-
-    " If previous line ended in a =>, indent again
-    if prevline =~? '=>\s*$'
+    " If previous line ended in a comma or =>, indent again
+    if prevline =~? ',\s*$' || prevline =~? '=>\s*$'
         let chg = chg + &sw
     endif
 
@@ -156,4 +151,3 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 
 " vim: set sw=4 sts=4 et tw=80 :
-
