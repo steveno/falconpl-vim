@@ -30,7 +30,6 @@ if exists("loaded_matchit") && !exists("b:match_words")
 	\ ',{:},\[:\],(:)'
 endif
 
-" Set comments to include dashed lines
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 
 " Windows allows you to filter the open file dialog
