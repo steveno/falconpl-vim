@@ -154,14 +154,9 @@ function FalconGetIndent()
         return chg = chg - (2 * &sw)
     endif
 
-    " If previous line ended in a comma, indent again
-    if prevline =~? ',\s*$'
-        return chg = chg + &sw
-    endif
-
-    " If previous line ended in a =>, indent again
-    if prevline =~? '=>\s*$'
-        return chg = chg + &sw
+    " If previous line ended in a comma or =>, indent again
+    if prevline =~? ',\s*$' || prevline =~? '=>\s*$'
+        let chg = chg + &sw
     endif
 
     " Deindent on proper keywords
