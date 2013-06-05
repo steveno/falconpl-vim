@@ -2,13 +2,11 @@
 " Language: Falcon
 " Maintainer: Steven Oliver <oliver.steven@gmail.com>
 " Website: https://steveno@github.com/steveno/falconpl-vim.git
-" Credits: Thanks to the ruby.vim authors, I borrow a lot!
+" Credits: Thanks to the ruby.vim indent authors, I borrow a lot!
 " Previous Maintainer: Brent A. Fulgham <bfulgham@debian.org>
-" -----------------------------------------------------------
 
-"======================================
-"       SETUP
-"======================================
+" 1. Setup {{{1
+" ============
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
@@ -19,7 +17,7 @@ let b:did_indent = 1
 setlocal nosmartindent
 
 " Setup indent function and when to use it
-setlocal indentexpr=FalconGetIndent()
+setlocal indentexpr=FalconGetIndent(v:lnum)
 setlocal indentkeys=0{,0},0),0],!^F,o,O,e
 setlocal indentkeys+==~case,=~catch,=~default,=~elif,=~else,=~end,=~\"
 
@@ -31,9 +29,8 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-"======================================
-"       VARIABLES
-"======================================
+" 2. Variables {{{1
+" ============
 
 " Regex of syntax group names that are strings AND comments
 let s:syng_strcom = '\<falcon\%(String\|StringEscape\|Comment\)\>'
@@ -49,18 +46,41 @@ let s:falcon_indent_keywords = '^\s*\(case\|catch\|class\|enum\|default\|elif\|e
 " Keywords to deindent on
 let s:falcon_deindent_keywords = '^\s*\(case\|catch\|default\|elif\|else\|end\)'
 
-"======================================
-"       FUNCTIONS
-"======================================
+" 3. Functions {{{1
+" ============
 
 " Check if the character at lnum:col is inside a string
 function s:IsInStringOrComment(lnum, col)
     return synIDattr(synID(a:lnum, a:col, 1), 'name') =~ s:syng_strcom
 endfunction
 
-"======================================
-"       INDENT ROUTINE
-"======================================
+" Find line above 'lnum' that isn't empty, in a comment, or in a string.
+function s:PrevNonBlankNonString(lnum)
+  let in_block = 0
+  let lnum = prevnonblank(a:lnum)
+  while lnum > 0
+    " Go in and out of blocks comments as necessary.
+    " If the line isn't empty (with opt. comment) or in a string, end search.
+    let line = getline(lnum)
+    if line =~ '^=begin'
+      if in_block
+        let in_block = 0
+      else
+        break
+      endif
+    elseif !in_block && line =~ '^=end'
+      let in_block = 1
+    elseif !in_block && line !~ '^\s*#.*$' && !(s:IsInStringOrComment(lnum, 1)
+          \ && s:IsInStringOrComment(lnum, strlen(line)))
+      break
+    endif
+    let lnum = prevnonblank(lnum - 1)
+  endwhile
+  return lnum
+endfunction
+
+" 4. FalconGetIndent Routine {{{1
+" ============
 
 function FalconGetIndent()
     " Get the line to be indented
@@ -129,14 +149,19 @@ function FalconGetIndent()
     endif
 
     " If previous line ends in a semi-colon reset indent to previous
-    " line's setting
-    if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'        
-        let chg = chg - (2 * &sw)
+    " lines setting
+    if prevline =~? ';\s*$' && prevnonblank(prevline) =~? ',\s*$'
+        return chg = chg - (2 * &sw)
     endif
 
-    " If previous line ended in a comma or =>, indent again
-    if prevline =~? ',\s*$' || prevline =~? '=>\s*$'
-        let chg = chg + &sw
+    " If previous line ended in a comma, indent again
+    if prevline =~? ',\s*$'
+        return chg = chg + &sw
+    endif
+
+    " If previous line ended in a =>, indent again
+    if prevline =~? '=>\s*$'
+        return chg = chg + &sw
     endif
 
     " Deindent on proper keywords
@@ -146,8 +171,5 @@ function FalconGetIndent()
 
     return ind + chg
 endfunction
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
 
 " vim: set sw=4 sts=4 et tw=80 :
