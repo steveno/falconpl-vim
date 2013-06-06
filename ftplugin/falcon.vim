@@ -14,7 +14,7 @@ let b:did_ftplugin = 1
 let s:cpo_save = &cpo
 set cpo&vim
 
-setlocal tabstop=4 shiftwidth=4 expandtab fileencoding=utf-8
+setlocal softtabstop=4 shiftwidth=4 fileencoding=utf-8
 setlocal suffixesadd=.fal,.ftd
 
 " Matchit support
