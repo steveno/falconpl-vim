@@ -38,11 +38,12 @@ if has("gui_win32") && !exists("b:browsefilter")
                      \ "All Files (*.*)\t*.*\n"
 endif
 
-let &cpo = s:cpo_save
-unlet s:cpo_save
-
 let b:undo_ftplugin = "setlocal tabstop< shiftwidth< expandtab< fileencoding<"
 	\ . " suffixesadd< comments<"
 	\ . "| unlet! b:browsefiler"
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 
 " vim: set sw=4 sts=4 et tw=80 :
