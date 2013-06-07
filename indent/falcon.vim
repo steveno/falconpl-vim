@@ -58,11 +58,6 @@ function s:IsInString(lnum, col)
     return synIDattr(synID(a:lnum, a:col, 1), 'name') =~ s:syng_string
 endfunction
 
-" Check if the character at lnum:col is inside a string or documentation.
-function s:IsInStringOrDocumentation(lnum, col)
-    return synIDattr(synID(a:lnum, a:col, 1), 'name') =~ s:syng_stringdoc
-endfunction
-
 " Check if the character at lnum:col is inside a string delimiter
 function s:IsInStringDelimiter(lnum, col)
     return synIDattr(synID(a:lnum, a:col, 1), 'name') == 'falconStringDelimiter'
@@ -73,7 +68,7 @@ function s:PrevNonBlankNonString(lnum)
     let in_block = 0
     let lnum = prevnonblank(a:lnum)
     while lnum > 0
-    " Go in and out of blocks comments as necessary.
+	" Go in and out of blocks comments as necessary.
 	" If the line isn't empty (with opt. comment) or in a string, end search.
 	let line = getline(lnum)
 	if line =~ '^=begin'
@@ -115,7 +110,7 @@ function s:GetMSL(lnum)
 	    "             
 	    return msl
 	elseif s:Match(line, s:non_bracket_continuation_regex) &&
-          \ s:Match(msl, s:non_bracket_continuation_regex)
+          	\ s:Match(msl, s:non_bracket_continuation_regex)
 	    " If the current line is a non-bracket continuation and so is the
 	    " previous one, keep its indent and continue looking for an MSL.
 	    "    
@@ -255,7 +250,7 @@ endfunction
 " 4. FalconGetIndent Routine {{{1
 " ============
 
-function FalconGetIndent()
+function FalconGetIndent(...)
     " For the current line, use the first argument if given, else v:lnum
     let clnum = a:0 ? a:1 : v:lnum
 
@@ -306,16 +301,8 @@ function FalconGetIndent()
     endif
 
     " If we are in a multi-line string or line-comment, don't do anything to it.
-    if s:IsInStringOrDocumentation(clnum, matchend(line, '^\s*') + 1)
+    if s:IsInString(clnum, matchend(line, '^\s*') + 1)
 	return indent('.')
-    endif
-
-    " If we are at the closing delimiter of a "<<" heredoc-style string, set the
-    " indent to 0.
-    if line =~ '^\k\+\s*$'
-		\ && s:IsInStringDelimiter(clnum, 1)
-		\ && search('\V<<'.line, 'nbW') > 0
-	return 0
     endif
 
     " Find a non-blank, non-multi-line string line above the current line.
@@ -438,8 +425,6 @@ function FalconGetIndent()
 	return ind
     endif
     
-    " }}}2
-
   return ind
 endfunction
 
