@@ -37,6 +37,28 @@ let s:syng_strcom = '\<falcon\%(String\|StringEscape\|Comment\)\>'
 " Regex of syntax group names that are strings
 let s:syng_string = '\<falcon\%(String\|StringEscape\)\>'
 
+" Regex that defines blocks.
+"
+" Note that there's a slight problem with this regex and s:continuation_regex.
+" Code like this will be matched by both:
+"
+"   method_call do |(a, b)|
+"
+" The reason is that the pipe matches a hanging "|" operator.
+"
+let s:block_regex =
+      \ '\%(\<do:\@!\>\|%\@<!{\)\s*\%(|\s*(*\s*\%([*@&]\=\h\w*,\=\s*\)\%(,\s*(*\s*[*@&]\=\h\w*\s*)*\s*\)*|\)\=\s*\%(#.*\)\=$'
+
+let s:block_continuation_regex = '^\s*[^])}\t ].*'.s:block_regex
+
+" Regex that defines continuation lines.
+" TODO: this needs to deal with if ...: and so on
+let s:continuation_regex =
+      \ '\%(%\@<![({[\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
+
+" Regex that defines continuation lines, not including (, {, or [.
+let s:non_bracket_continuation_regex = '\%([\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
+
 " Keywords to indent on
 let s:falcon_indent_keywords = '^\s*\(case\|catch\|class\|enum\|default\|elif\|else' .
     \ '\|for\|function\|if.*"[^"]*:.*"\|if \(\(:\)\@!.\)*$\|loop\|object\|select' .
@@ -99,17 +121,7 @@ function s:GetMSL(lnum)
 	" Otherwise, terminate search as we have found our MSL already.
 	let line = getline(lnum)
 	
-	if s:Match(lnum, s:splat_regex)
-	    " If the above line looks like the "*" of a splat, use the current one's
-	    " indentation.
-	    " 
-	    " Example:
-	    "   Hash[*
-	    "       method_call do
-	    "             something
-	    "             
-	    return msl
-	elseif s:Match(line, s:non_bracket_continuation_regex) &&
+	if s:Match(line, s:non_bracket_continuation_regex) &&
           	\ s:Match(msl, s:non_bracket_continuation_regex)
 	    " If the current line is a non-bracket continuation and so is the
 	    " previous one, keep its indent and continue looking for an MSL.
