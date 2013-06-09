@@ -1,6 +1,6 @@
 /*
  *          UNIT TESTS FOR FALCON.VIM INDENT SCRIPT
- *          
+ *
  *  ____________________________________
  *  INSTRUCTIONS
  *
@@ -20,7 +20,7 @@
  *
  *  ____________________________________
  *  ADDING NEW FORMATING TESTS
- *  
+ *
  *  Simply add all new formating examples to the bottom of the 
  *  script. This is no special ordering at this time.
  *
@@ -28,7 +28,7 @@
  *  KNOWN FAILURES
  *
  *  - None at this time.
- *  
+ *
  */
 
 // No indenting required
