@@ -56,6 +56,9 @@ let s:block_continuation_regex = '^\s*[^])}\t ].*'.s:block_regex
 let s:continuation_regex =
       \ '\%(%\@<![({[\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
 
+" Regex that defines bracket continuations
+let s:bracket_continuation_regex = '%\@<!\%([({[]\)\s*\%(#.*\)\=$'
+
 " Regex that defines continuation lines, not including (, {, or [.
 let s:non_bracket_continuation_regex = '\%([\\.,:*/%+]\|\<and\|\<or\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\)\s*\%(#.*\)\=$'
 
