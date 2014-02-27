@@ -117,7 +117,7 @@ syn region falconString start=+\%(\%(class\s*\|\%([]}).]\|::\)\)\_s*\|\w\)\@<!<<
 syn region falconString start=+\%(\%(class\s*\|\%([]}).]\|::\)\)\_s*\|\w\)\@<!<<-'\z([^']*\)'\ze+hs=s+3  matchgroup=falconStringDelimiter end=+^\s*\zs\z1$+ fold keepend
 syn region falconString start=+\%(\%(class\s*\|\%([]}).]\|::\)\)\_s*\|\w\)\@<!<<-`\z([^`]*\)`\ze+hs=s+3  matchgroup=falconStringDelimiter end=+^\s*\zs\z1$+ contains=falconStringEscape fold keepend
 
-" Falcon rainbox to highlight parens in varying colors
+" Falcon rainbow to highlight parens in varying colors
 if exists("g:falcon_rainbow") && g:falcon_rainbow != 0
     syn region falconParen0           matchgroup=hlLevel0 start="`\=(" end=")" skip="|.\{-}|" contains=@falconListCluster,falconParen1
     syn region falconParen1 contained matchgroup=hlLevel1 start="`\=(" end=")" skip="|.\{-}|" contains=@falconListCluster,falconParen2
