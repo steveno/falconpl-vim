@@ -1,8 +1,7 @@
 " Vim filetype plugin file
 " Language:     Falcon
 " Author:       Steven Oliver <oliver.steven@gmail.com>
-" Copyright:    Copyright (c) 2009-2013 Steven Oliver
-" License:      You may redistribute this under the same terms as Vim itself
+" Copyright:    Copyright (c) 2009-2014 Steven Oliver
 " --------------------------------------------------------------------------
 
 " Only do this when not done yet for this buffer
